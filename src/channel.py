@@ -33,6 +33,63 @@ class Channel:
         self.video_count = statistics['videoCount']
         self.view_count = statistics['viewCount']
 
+    def __str__(self) -> str:
+        """
+        Возвращает строковое представление объекта Channel.
+        Returns:
+            str: Строковое представление объекта Channel.
+        """
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other) -> int:
+        """
+        Выполняет операцию сложения двух объектов Channel.
+        Args:
+            other (Channel): Другой объект Channel.
+        Returns:
+            int: Сумма количества подписчиков двух каналов.
+        """
+        return int(self.subscribers_count) + int(other.subscribers_count)
+
+    def __sub__(self, other) -> int:
+        """
+        Выполняет операцию вычитания двух объектов Channel.
+        Args:
+            other (Channel): Другой объект Channel.
+        Returns:
+            int: Разность количества подписчиков двух каналов.
+        """
+        return int(self.subscribers_count) - int(other.subscribers_count)
+
+    def __lt__(self, other) -> bool:
+        """
+        Выполняет операцию "меньше чем" для двух объектов Channel.
+        Args:
+            other (Channel): Другой объект Channel.
+        Returns:
+            bool: Результат сравнения по количеству подписчиков.
+        """
+        return self.subscribers_count < other.subscribers_count
+
+    def __le__(self, other) -> bool:
+        """
+        Выполняет операцию "меньше или равно" для двух объектов Channel.
+        """
+        return self.subscribers_count <= other.subscribers_count
+
+    def __gt__(self, other) -> bool:
+        """
+        Выполняет операцию "больше чем" для двух объектов Channel.
+        """
+        return self.subscribers_count > other.subscribers_count
+
+    def __ge__(self, other) -> bool:
+        """
+        Выполняет операцию "больше или равно" для двух объектов Channel.
+        """
+
+        return self.subscribers_count >= other.subscribers_count
+
     def print_info(self) -> None:
         """
         Выводит в консоль информацию о канале.
@@ -80,3 +137,4 @@ class Channel:
 if __name__ == '__main__':
     vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
     vdud.print_info()
+    print(vdud.__str__())
