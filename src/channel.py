@@ -132,9 +132,3 @@ class Channel:
 
         with open(filename, 'w') as f:
             json.dump(data, f)
-
-
-if __name__ == '__main__':
-    vdud = Channel('UCMCgOm8GZkHp8zJ6l7_hIuA')
-    vdud.print_info()
-    print(vdud.__str__())

@@ -2,14 +2,17 @@ import os
 
 from googleapiclient.discovery import build
 
-from helper.youtube_api_manual import playlist_id
-
 
 class Video:
     api_key: str = os.getenv('YT_API_KEY')
     youtube = build('youtube', 'v3', developerKey=api_key)
 
     def __init__(self, video_id: str) -> None:
+        """
+        Инициализирует объект Video.
+        Args:
+            video_id (str): Идентификатор видео.
+        """
         self.video_id = video_id
         try:
             response = self.youtube.videos().list(part="snippet,statistics", id=self.video_id).execute()
@@ -23,18 +26,21 @@ class Video:
             print(f'Error retrieving video information: {e}')
 
     def __str__(self) -> str:
+        """
+        Возвращает строковое представление объекта Video.
+        Returns:
+            str: Заголовок видео.
+        """
         return self.title
-
-
-if __name__ == '__main__':
-    # Создаем два экземпляра класса
-    video1 = Video('9lO06Zxhu88')  # '9lO06Zxhu88' - это id видео из ютуб
-    print()
-
-    assert str(video1) == 'Как устроена IT-столица мира / Russian Silicon Valley (English subs)'
 
 
 class PLVideo(Video):
     def __init__(self, video_id: str, pl_id: str) -> None:
+        """
+        Инициализирует объект PLVideo.
+        Args:
+            video_id (str): Идентификатор видео.
+            pl_id (str): Идентификатор плейлиста.
+        """
         super().__init__(video_id)
         self.playlist_id = pl_id
