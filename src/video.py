@@ -24,6 +24,10 @@ class Video:
             self.likes = statistics['likeCount'] or statistics['favoriteCount']
         except Exception as e:
             print(f'Error retrieving video information: {e}')
+            self.title = None
+            self.link = None
+            self.views = None
+            self.likes = None
 
     def __str__(self) -> str:
         """
