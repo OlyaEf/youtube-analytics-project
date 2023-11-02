@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["OlyaEf <efimovskikh@gmail.com>"]
 readme = "README.md"
-packages = [{include = "youtube_analytics_project"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
